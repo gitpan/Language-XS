@@ -24,7 +24,6 @@ DESCRIPTION
 
 METHODS
   new attr => value, ...
-
     Creates a new Language::XS object. Known attributes are:
 
      id             a unique id that woill be shared among all modules
@@ -38,66 +37,56 @@ METHODS
      $xs = new Language::XS cachedir => undef;      # caching disabled
 
   cached
-
     Returns true when as shared object with the given id already exists.
     This obviously only makes sense when you gave the module a unique id.
 
   hdr sourcecode, [id]
-
-    Add `sourcecode' to the header portion. Similar to the header portion of
+    Add "sourcecode" to the header portion. Similar to the header portion of
     an XS module, you can insert any valid C-code here. Most often you'd add
     some include directives, though.
 
-    `id' can be used to identify this portion (for error messages).
+    "id" can be used to identify this portion (for error messages).
 
   cfun functionbody, [id], [prototype]
+    Adds a XS function whose body is given in "functionbody". Unlike XS, you
+    have to do argument processing (i.e. fiddling with ST(0)) yourself. "id"
+    specifies the function name (for "find()" or error messages), and can be
+    omitted (which results in a default name).
 
-    Adds a XS function whose body is given in `functionbody'. Unlike XS, you
-    have to do argument processing (i.e. fiddling with `ST(0)') yourself.
-    `id' specifies the function name (for `find()' or error messages), and
-    can be omitted (which results in a default name).
-
-    `prototype' is an optional string that specifies the perl protoype.
+    "prototype" is an optional string that specifies the perl protoype.
     Remember that only the parser will evaluate prototypes.
 
   xsfun xs-source
-
-    Similar to `cfun', but is able to parse normal XS syntax (most of it,
+    Similar to "cfun", but is able to parse normal XS syntax (most of it,
     that is). Pity that I haven't yet implemented this function, since that
-    would require serious recoding of `xsubpp'.
+    would require serious recoding of "xsubpp".
 
   uselib lib...
-
     Link against all the libraries given as arguments. The libraries should
-    be specified as strings of the form `-llibrary'. Additional search paths
-    can be given using `-L/path/to/libs'. See the ExtUtils::Liblist manpage.
+    be specified as strings of the form "-llibrary". Additional search paths
+    can be given using "-L/path/to/libs". See ExtUtils::Liblist.
 
   incpath path...
-
     Add additional include paths. These paths are prepended to the other
     include paths.
 
   gen
-
     Create the shared object file. This method is called automatically by
-    `load' and even by `find'. This function returns a truth status and
-    fills the messages attribute (see `messages') with any compiler/linker
+    "load" and even by "find". This function returns a truth status and
+    fills the messages attribute (see "messages") with any compiler/linker
     warnings or errors.
 
   messages
-
-    Returns the compiler messages (created & updated by `gen').
+    Returns the compiler messages (created & updated by "gen").
 
   load
-
     Tries to load the shared object, generating it if necessary. Returns a
     truth status.
 
   find [id]
-
-    Find the function (either xs or c) with id `id' and return a code-ref to
-    it. If `id' is omitted, the default function (see `cfun') is returned
-    instead. If no shared object is loaded, calls `load'.
+    Find the function (either xs or c) with id "id" and return a code-ref to
+    it. If "id" is omitted, the default function (see "cfun") is returned
+    instead. If no shared object is loaded, calls "load".
 
 BUGS/PROBLEMS
     Requires a C compiler (or even worse: the same C compiler perl was
@@ -110,7 +99,7 @@ BUGS/PROBLEMS
     Line number handling could be better.
 
 AUTHOR
-    Marc Lehmann <pcg@goof.com>.
+    Marc Lehmann <schmorp@schmorp.de>.
 
 SEE ALSO
     perl(1).

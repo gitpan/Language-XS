@@ -15,7 +15,7 @@ require Exporter;
 @EXPORT = ();
 @EXPORT_OK = ();
 %EXPORT_TAGS = ();
-$VERSION = 0.01;
+$VERSION = 0.02;
 
 =head1 NAME
 
@@ -91,7 +91,7 @@ END {
 
 sub sanitize_id($) {
    my $id = shift;
-   $id =~ y{0-9a-zA-Z-_.:/\\}{}cd;
+   $id =~ y{0-9a-zA-Z\-_.:/\\}{}cd;
    $id;
 }
 
@@ -386,7 +386,7 @@ Line number handling could be better.
 
 =head1 AUTHOR
 
-Marc Lehmann <pcg@goof.com>.
+Marc Lehmann <schmorp@schmorp.de>.
 
 =head1 SEE ALSO
 
